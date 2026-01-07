@@ -1,14 +1,11 @@
 from typing import Optional
-from nonebot import on_command
 from nonebot.typing import T_State
-from nonebot.params import CommandArg
 from nonebot_plugin_alconna import on_alconna, Arparma
 from nonebot.adapters.onebot.v11 import MessageSegment
 from arclet.alconna import Alconna, Args
-from db.model_dependencies import Package, reverse_card_rarity_map
-from core.exceptions import ErrorCodes, ServerError
+from db.model_dependencies import Package
 from services.card_services.card_info_services import query_card_info_service, query_package_catalog_service
-from log.log_config.service_logger import info_logger, err_logger
+from log.log_config.service_logger import info_logger
 
 
 info_alc = Alconna(

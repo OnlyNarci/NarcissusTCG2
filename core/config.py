@@ -23,7 +23,7 @@ class Settings:
     SESSION_EXPIRE_HOURS = 120
     SERVER_PORT: int = 8000
     SERVER_HOST: str = "127.0.0.1"
-    ALLOWED_ORIGINS: list[str] = ["http://localhost:8000", "http://127.0.0.1:8000", "http://localhost:5173"]
+    ALLOWED_ORIGINS: list[str] = ["http://localhost:8000", "http://127.0.0.1:8000"]
     
     # bot参数
     SUPER_USER_UID: list[int] = [3316898327, 1251649771]

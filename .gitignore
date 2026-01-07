@@ -35,9 +35,8 @@ ENV/
 *.swo
 *~
 
-# 环境变量文件
-.env
-.env.local
+# 密钥文件
+private_key/
 
 # 日志文件
 *.log

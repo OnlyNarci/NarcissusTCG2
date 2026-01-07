@@ -1,13 +1,10 @@
 from .setup_logging import setup_logging
-from utils.find_project_root import find_project_root
-from pathlib import Path
+from core.config import project_root
 from logging import Logger
 
 
 def service_logger_setup() -> tuple[Logger, Logger]:
     # 动态查找项目根目录（基于readme-zh.md文件）
-    current_dir = Path(__file__).parent.resolve()
-    project_root = find_project_root(current_dir)
     log_dir = project_root / 'log' / 'log_lib' / 'service'
     loggers = setup_logging(
         log_path=log_dir,
