@@ -10,6 +10,7 @@ Core 模块提供核心配置、中间件、异常处理和工具函数。
 - 数据库连接配置
 - Tortoise-ORM 配置
 - 系统参数（服务器端口、超时时间等）
+- 项目根目录project_root，推荐使用pathlib.Path
 
 #### Settings 类
 
@@ -134,15 +135,6 @@ SUPER_USER_UID: list[int] = [1234567890]
 3. **命令处理** → endpoints 执行业务逻辑
 4. **异常处理** → `handle_exceptions` 捕获异常并发送响应
 
-## 工具函数
-
-### find_project_root
-
-查找项目根目录（定义在 `utils/find_project_root.py`）：
-
-```python
-from core.config import project_root
-```
 
 ## 最佳实践
 

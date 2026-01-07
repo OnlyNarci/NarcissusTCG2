@@ -1,5 +1,4 @@
 from pathlib import Path
-from utils.find_project_root import find_project_root
 
 
 class Settings:
@@ -69,5 +68,4 @@ TORTOISE_ORM_CONFIG = {
     }
 
 
-current_dir = Path(__file__).parent.resolve()
-project_root = find_project_root(current_dir)
+project_root = Path('')
