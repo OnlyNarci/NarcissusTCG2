@@ -44,7 +44,7 @@ nonebot-plugin-apscheduler = ["nonebot_plugin_apscheduler"]
 nonebot-plugin-htmlkit = ["nonebot_plugin_htmlkit"]
 
 [tool.setuptools]
-packages = ["api", "services", "db", "schemas", "core", "log", "tests"]
+packages = ["api", "services", "db", "schemas", "core", "log", "tests", "self_types", "utils"]
 
 [tool.mypy]
 python_version = "3.13"
