@@ -1,0 +1,595 @@
+[
+  {
+    "id": 1,
+    "name": "油画",
+    "image": "",
+    "rarity": 4,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "大千世界",
+    "compose_materials": {
+      "2": 1,
+      "28": 5,
+      "29": 2,
+      "30": 2,
+      "31": 5,
+      "32": 4
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 2,
+    "name": "空白画布",
+    "image": "",
+    "rarity": 3,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "你想要活出怎样的人生？",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 3,
+    "name": "桌子",
+    "image": "",
+    "rarity": 4,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "必须的家具之一",
+    "compose_materials": {
+      "14": 27
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 4,
+    "name": "枣树",
+    "image": "",
+    "rarity": 3,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "我家门前有两棵树",
+    "compose_materials": {},
+    "decompose_materials": {
+      "14": 9
+    }
+  },
+  {
+    "id": 5,
+    "name": "笔记本++",
+    "image": "",
+    "rarity": 4,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "面向对象的笔记本",
+    "compose_materials": {
+      "6": 9
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 6,
+    "name": "笔记本",
+    "image": "",
+    "rarity": 2,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "它一定管用",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 7,
+    "name": "猩红红酒",
+    "image": "",
+    "rarity": 4,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "多么强大的Power！",
+    "compose_materials": {
+      "8": 1,
+      "9": 2
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 8,
+    "name": "鲜血",
+    "image": "",
+    "rarity": 3,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "渴望鲜血还是渴望力量？",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 9,
+    "name": "红酒",
+    "image": "",
+    "rarity": 3,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "和鲜血具有相同的颜色",
+    "compose_materials": {
+      "10": 3,
+      "11": 6
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 10,
+    "name": "红葡萄",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "不能晒成葡萄干",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 11,
+    "name": "水",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "万物之源",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 12,
+    "name": "咖啡",
+    "image": "",
+    "rarity": 2,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "提神醒脑",
+    "compose_materials": {
+      "11": 2,
+      "13": 1
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 13,
+    "name": "咖啡豆",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "咖啡豆和巧克力豆是同一种植物，嗯，没错！",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 14,
+    "name": "木块",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "你想把它敲打成什么模样？",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 15,
+    "name": "一箱面粉",
+    "image": "",
+    "rarity": 4,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "好多好多面粉",
+    "compose_materials": {
+      "16": 3
+    },
+    "decompose_materials": {
+      "16": 3
+    }
+  },
+  {
+    "id": 16,
+    "name": "一袋面粉",
+    "image": "",
+    "rarity": 3,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "够吃一个月的面粉",
+    "compose_materials": {
+      "17": 3
+    },
+    "decompose_materials": {
+      "17": 3
+    }
+  },
+  {
+    "id": 17,
+    "name": "一堆面粉",
+    "image": "",
+    "rarity": 2,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "够吃一天的面粉",
+    "compose_materials": {
+      "18": 3
+    },
+    "decompose_materials": {
+      "18": 3
+    }
+  },
+  {
+    "id": 18,
+    "name": "一把面粉",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "闻上去就很好吃",
+    "compose_materials": {
+      "19": 1
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 19,
+    "name": "小麦",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "磨成面粉",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 20,
+    "name": "浆糊",
+    "image": "",
+    "rarity": 2,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "直接用手给对联抹浆糊意味着长大",
+    "compose_materials": {
+      "11": 2,
+      "18": 1
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 21,
+    "name": "草莓蛋糕",
+    "image": "",
+    "rarity": 3,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "这是我的点心",
+    "compose_materials": {
+      "22": 3,
+      "23": 3,
+      "18": 3
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 22,
+    "name": "鸡蛋",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "怎么做都好吃，只要它不会孵化成小鸡",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 23,
+    "name": "草莓",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "12月上市",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 24,
+    "name": "曲奇",
+    "image": "",
+    "rarity": 2,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "cookie cat",
+    "compose_materials": {
+      "18": 2,
+      "13": 1
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 25,
+    "name": "面包",
+    "image": "",
+    "rarity": 2,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "可以充饥",
+    "compose_materials": {
+      "18": 3
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 26,
+    "name": "黑马",
+    "image": "",
+    "rarity": 2,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "黑马非马",
+    "compose_materials": {
+      "14": 1,
+      "28": 2
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 27,
+    "name": "红马",
+    "image": "红马，定教它名扬天下！",
+    "rarity": 2,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "",
+    "compose_materials": {
+      "14": 1,
+      "29": 2
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 28,
+    "name": "0,0,0",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "白色",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 29,
+    "name": "255,255,255",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "黑色",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 30,
+    "name": "255,0,0",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "红色",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 31,
+    "name": "0,255,0",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "绿色",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 32,
+    "name": "0,0,255",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "蓝色",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 33,
+    "name": "牛奶",
+    "image": "",
+    "rarity": 1,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "不是所有的牛奶都会成为蛋糕",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 34,
+    "name": "奶油",
+    "image": "",
+    "rarity": 2,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "一斤奶油半斤空气",
+    "compose_materials": {
+      "33": 3
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 35,
+    "name": "奶油蛋糕",
+    "image": "",
+    "rarity": 3,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "好久没吃了",
+    "compose_materials": {
+      "34": 1,
+      "18": 3,
+      "22": 3
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 36,
+    "name": "热巧克力",
+    "image": "",
+    "rarity": 3,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "谁会给你一杯热巧克力？",
+    "compose_materials": {
+      "33": 3,
+      "13": 3,
+      "34": 1
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 37,
+    "name": "板蓝根颗粒",
+    "image": "",
+    "rarity": 2,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "也许这个也挺好吃的",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "id": 38,
+    "name": "雌斑虎",
+    "image": "",
+    "rarity": 3,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "看起来很像老虎的饼干",
+    "compose_materials": {
+      "24": 2,
+      "28": 1,
+      "30": 1,
+      "32": 1
+    },
+    "decompose_materials": {}
+  },
+  {
+    "id": 39,
+    "name": "兽兽w",
+    "image": "",
+    "rarity": 4,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "巨龙领主才能享用的美食",
+    "compose_materials": {
+      "38": 1
+    },
+    "decompose_materials": {
+      "38": 1
+    }
+  },
+  {
+    "id": 40,
+    "name": "面粉袋子",
+    "image": "",
+    "rarity": 5,
+    "package": "base",
+    "unlock_level": 1,
+    "description": "集合一切，复活面粉袋子",
+    "compose_materials": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 1,
+      "12": 1,
+      "13": 1,
+      "14": 1,
+      "15": 1,
+      "16": 1,
+      "17": 1,
+      "18": 1,
+      "19": 1,
+      "20": 1,
+      "21": 1,
+      "22": 1,
+      "23": 1,
+      "24": 1,
+      "25": 1,
+      "26": 1,
+      "27": 1,
+      "28": 1,
+      "29": 1,
+      "30": 1,
+      "31": 1,
+      "32": 1,
+      "33": 1,
+      "34": 1,
+      "35": 1,
+      "36": 1,
+      "37": 1,
+      "38": 1,
+      "39": 1
+    },
+    "decompose_materials": {
+      "1": 1,
+      "2": 1,
+      "3": 1,
+      "4": 1,
+      "5": 1,
+      "6": 1,
+      "7": 1,
+      "8": 1,
+      "9": 1,
+      "10": 1,
+      "11": 1,
+      "12": 1,
+      "13": 1,
+      "14": 1,
+      "15": 1,
+      "16": 1,
+      "17": 1,
+      "18": 1,
+      "19": 1,
+      "20": 1,
+      "21": 1,
+      "22": 1,
+      "23": 1,
+      "24": 1,
+      "25": 1,
+      "26": 1,
+      "27": 1,
+      "28": 1,
+      "29": 1,
+      "30": 1,
+      "31": 1,
+      "32": 1,
+      "33": 1,
+      "34": 1,
+      "35": 1,
+      "36": 1,
+      "37": 1,
+      "38": 1,
+      "39": 1
+    }
+  }
+]
