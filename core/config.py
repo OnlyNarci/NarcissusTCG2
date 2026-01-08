@@ -13,7 +13,6 @@ class Settings:
     DB_PASSWORD: str = ''
     DB_NAME: str = "narcissus_tcg"
     DB_CHARSET: str = "utf8mb4"
-
     # 连接池配置
     DB_POOL_MIN_SIZE: int = 5
     DB_POOL_MAX_SIZE: int = 20
@@ -68,4 +67,4 @@ TORTOISE_ORM_CONFIG = {
     }
 
 
-project_root = Path('D:\\SFW\\python_learning\\NoneBotProject\\NarcissusTCG2')
+project_root = Path('')

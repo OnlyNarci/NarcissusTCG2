@@ -37,6 +37,7 @@ ENV/
 
 # 密钥文件
 private_key/
+云服务器启动指令.txt
 
 # 日志文件
 *.log

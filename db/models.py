@@ -21,7 +21,7 @@ class User(Model):
     uid = fields.CharField(min_length=1, max_length=20, unique=True, description='用户qq号')
     name = fields.CharField(max_length=20, description='用户名')
     title = fields.CharField(max_length=20, default='萌新', description='用户游戏特殊称号')
-    level = fields.IntField(default=1, description='用户等级')
+    level = fields.IntField(default=1, description='用户等级，获取比特加成')
     exp = fields.IntField(default=0, description='用户累计经验值')
     byte = fields.IntField(default=0, description='用户比特数量，这是游戏中的基础货币')
     last_check_in = fields.DateField(null=True, default=None, description="最后签到日期")
@@ -223,7 +223,7 @@ class Order(Model):
         model_name='models.User',
         related_name='order',
     )
-    require_card: Dict[int, int] = fields.JSONField(default=dict, description='订单需要的卡牌，键为卡牌id，值为数量')
+    require_card: Dict[str, int] = fields.JSONField(default=dict, description='订单需要的卡牌，键为卡牌id，值为数量')
     byte = fields.IntField(description='完成订单可以获得的比特')
     exp = fields.IntField(description='完成订单可以获得的经验')
     status = fields.IntEnumField(

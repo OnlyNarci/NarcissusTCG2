@@ -69,18 +69,22 @@ async def query_package_catalog_endpoint(
     :param state: 请求状态，用于解析用户信息
     :param result: 查询参数，包含卡包名
     """
+    user_id = state.get('user_id')
     package = result.all_matched_args.get('package', None)
     try:
         package = Package(package)
-        catalog = await query_package_catalog_service(package=package)
-        info_logger.info(f'success in get package info. params: user_id={state.get('user_id')}, package={package}')
-        if not catalog:
+        catalog_dict = await query_package_catalog_service(
+            user_id=user_id,
+            package=package
+        )
+        info_logger.info(f'success in get package info. params: user_id={user_id}, package={package}')
+        if catalog_dict is None:
             await catalog_cmd.finish(f'扩展包未上线: {package}，敬请期待。')
         else:
             forward_msg = MessageSegment.node_custom(
                 user_id=state.get('user_uid'),
                 nickname='图鉴',
-                content='\n'.join(catalog)
+                content='\n'.join([f'{card_name} * {number}' for card_name, number in catalog_dict.items()])
             )
 
             await catalog_cmd.finish(forward_msg)

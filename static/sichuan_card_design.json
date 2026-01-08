@@ -1,32 +1,83 @@
 [
   {
+    "name": "辣椒",
+    "image": "",
+    "rarity": 1,
+    "package": "川菜",
+    "unlock_level": "",
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "香料",
+    "image": "",
+    "rarity": 1,
+    "package": "川菜",
+    "unlock_level": 1,
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "猪肉",
+    "image": "",
+    "rarity": 2,
+    "package": "川菜",
+    "unlock_level": 1,
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "鸡杂",
+    "image": "",
+    "rarity": 2,
+    "package": "川菜",
+    "unlock_level": 1,
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "把子肉",
+    "image": "",
+    "rarity": 3,
+    "package": "",
+    "unlock_level": 1,
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "生猪",
+    "image": "",
+    "rarity": 3,
+    "package": "川菜",
+    "unlock_level": 1,
+    "description": "婚宴上非常常见的菜品",
+    "compose_materials": {
+      "猪肉": 2,
+      "猪杂": 1
+    },
+    "decompose_materials": {
+      "猪肉": 2,
+      "猪杂": 1
+    }
+  },
+  {
     "name": "回锅肉",
     "image": "",
     "rarity": 3,
-    "package": "",
-    "unlock_level": "",
+    "package": "川菜",
+    "unlock_level": 1,
     "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "酸菜鱼",
-    "image": "",
-    "rarity": 3,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "牛肉焦饼",
-    "image": "",
-    "rarity": 2,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
+    "compose_materials": {
+      "猪肉": 2,
+      "蒜苗": 1,
+      "豆豉": 1,
+      "辣椒": 1
+    },
     "decompose_materials": {}
   },
   {

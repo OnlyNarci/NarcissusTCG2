@@ -32,8 +32,8 @@ class StoreCardParams(CardParams):
     商店中的卡牌模型，用于校验查商店、买卡、上架卡牌的请求参数
     """
     store_id: Optional[int] = Field(default=None, ge=1, title='卡牌的商店id')
-    number: int = Field(default=1, ge=0, title='卡牌数量')
-    price: int = Field(default=1000, ge=0, title='卡牌价格')
+    number: int = Field(default=1, ge=1, title='卡牌数量')
+    price: int = Field(default=1000, ge=1, title='卡牌价格')
     owner_name: str = Field(default="unknown", title='卡牌持有者名称')
     
     def __repr__(self):

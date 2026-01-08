@@ -1,214 +1,38 @@
 [
   {
-    "name": "黄豆",
+    "name": "土豆",
     "image": "",
     "rarity": 1,
-    "package": "鲁菜",
+    "package": "民族",
     "unlock_level": 1,
-    "description": "",
+    "description": "是鸡肉不少肌肉",
     "compose_materials": {},
     "decompose_materials": {}
   },
   {
-    "name": "蒜苗",
+    "name": "白切鸡",
     "image": "",
-    "rarity": 1,
-    "package": "鲁菜",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "青椒",
-    "image": "",
-    "rarity": 1,
-    "package": "鲁菜",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "葱",
-    "image": "",
-    "rarity": 1,
-    "package": "鲁菜",
+    "rarity": 3,
+    "package": "粤菜",
     "unlock_level": 1,
-    "description": "管它大葱还是小葱",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "香菇",
-    "image": "",
-    "rarity": 1,
-    "package": "鲁菜",
-    "unlock_level": 1,
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "酱料",
-    "image": "",
-    "rarity": 2,
-    "package": "鲁菜",
-    "unlock_level": 1,
-    "description": "",
+    "description": "传说菜品，竟然只要史诗品质",
     "compose_materials": {
-      "黄豆": 1,
-      "辣椒": 1,
-      "香料": 3
+      "鸡肉": 3
     },
     "decompose_materials": {}
   },
   {
-    "name": "鸭肉",
+    "name": "豆豉",
     "image": "",
-    "rarity": 2,
-    "package": "鲁菜",
+    "rarity": 1,
+    "package": "粤菜",
     "unlock_level": 1,
     "description": "",
     "compose_materials": {},
     "decompose_materials": {}
   },
   {
-    "name": "鹅肉",
-    "image": "",
-    "rarity": 2,
-    "package": "鲁菜",
-    "unlock_level": 1,
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "猪杂",
-    "image": "",
-    "rarity": 2,
-    "package": "川菜",
-    "unlock_level": 1,
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "德州扒鸡",
-    "image": "",
-    "rarity": 3,
-    "package": "鲁菜",
-    "unlock_level": 1,
-    "description": "有个外地人一直把pá鸡念成bā鸡，直到他顺口读出了鸡扒饭.....",
-    "compose_materials": {
-      "鸡肉": 2
-    },
-    "decompose_materials": {}
-  },
-  {
-    "name": "把子肉",
-    "image": "",
-    "rarity": 3,
-    "package": "",
-    "unlock_level": 1,
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "糖醋鲤鱼",
-    "image": "",
-    "rarity": 3,
-    "package": "鲁菜",
-    "unlock_level": 1,
-    "description": "婚宴上非常常见的菜品",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "黄焖鸡",
-    "image": "",
-    "rarity": 3,
-    "package": "鲁菜",
-    "unlock_level": 1,
-    "description": "定冻鸡、大狗椒、小土豆和灵感菇组成黄焖基米饭",
-    "compose_materials": {
-      "鸡肉": 1,
-      "青椒": 2,
-      "土豆": 2,
-      "香菇": 2
-    },
-    "decompose_materials": {
-      "鸡肉": 1,
-      "青椒": 2,
-      "土豆": 2,
-      "香菇": 2
-    }
-  },
-  {
-    "name": "葱烧海参",
-    "image": "",
-    "rarity": 4,
-    "package": "鲁菜",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "九转大肠",
-    "image": "",
-    "rarity": 4,
-    "package": "鲁菜",
-    "unlock_level": "",
-    "description": "九转大肠：没有保留食材原有风味，放心食用",
-    "compose_materials": {
-      "猪杂": 2
-    },
-    "decompose_materials": {}
-  },
-  {
-    "name": "玉米搅团",
-    "image": "",
-    "rarity": 2,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "肉夹馍",
-    "image": "",
-    "rarity": 3,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "秦镇米粉",
-    "image": "",
-    "rarity": 2,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "肉丝油泼面",
-    "image": "",
-    "rarity": 3,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "八宝锅蒸",
+    "name": "文思豆腐",
     "image": "",
     "rarity": 4,
     "package": "",
@@ -218,7 +42,107 @@
     "decompose_materials": {}
   },
   {
-    "name": "咸豆花",
+    "name": "蟹粉狮子头",
+    "image": "",
+    "rarity": 4,
+    "package": "",
+    "unlock_level": "",
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "拆烩鲢鱼头",
+    "image": "",
+    "rarity": 4,
+    "package": "",
+    "unlock_level": "",
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "淮安软兜",
+    "image": "",
+    "rarity": 3,
+    "package": "",
+    "unlock_level": "",
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "松鼠鳜鱼",
+    "image": "",
+    "rarity": 0,
+    "package": "",
+    "unlock_level": "",
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "干炒牛河",
+    "image": "",
+    "rarity": 3,
+    "package": "",
+    "unlock_level": "",
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "豉油鸡",
+    "image": "",
+    "rarity": 3,
+    "package": "",
+    "unlock_level": "",
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "煎虾饼",
+    "image": "",
+    "rarity": 3,
+    "package": "",
+    "unlock_level": "",
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "咕咾肉",
+    "image": "",
+    "rarity": 3,
+    "package": "",
+    "unlock_level": "",
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "腊味煲仔饭",
+    "image": "",
+    "rarity": 4,
+    "package": "",
+    "unlock_level": "",
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "海鲜煲仔饭",
+    "image": "",
+    "rarity": 3,
+    "package": "",
+    "unlock_level": "",
+    "description": "",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "双皮奶",
     "image": "",
     "rarity": 2,
     "package": "",
@@ -228,9 +152,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "脆皮烧鹅",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -238,9 +162,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "三杯鸡",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -248,9 +172,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "盐焗鲜鲍",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -258,9 +182,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "六头干鲍",
     "image": "",
-    "rarity": 0,
+    "rarity": 4,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -268,9 +192,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "煎焗鳗鱼",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -278,9 +202,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "佛跳墙",
     "image": "",
-    "rarity": 0,
+    "rarity": 4,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -288,9 +212,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "脆皮烧鸡",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -298,9 +222,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "无骨鲫鱼",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -308,9 +232,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "潮州蚝烙",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -318,9 +242,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "鸡粥石榴包",
     "image": "",
-    "rarity": 0,
+    "rarity": 4,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -328,9 +252,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "风生水起",
     "image": "",
-    "rarity": 0,
+    "rarity": 4,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -338,9 +262,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "叉烧包",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -348,9 +272,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "生腌血蚶",
     "image": "",
-    "rarity": 0,
+    "rarity": 2,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -358,9 +282,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "反沙芋头",
     "image": "",
-    "rarity": 0,
+    "rarity": 2,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -368,9 +292,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "百花竹笙卷",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -378,9 +302,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "蟹粉苦瓜虾肉墩",
     "image": "",
-    "rarity": 0,
+    "rarity": 4,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -388,9 +312,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "荷包鳝",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -398,9 +322,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "渔面",
     "image": "",
-    "rarity": 0,
+    "rarity": 2,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -408,9 +332,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "绣球东星斑",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -418,9 +342,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "功夫小炒皇",
     "image": "",
-    "rarity": 0,
+    "rarity": 4,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -428,9 +352,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "茶香鸡",
     "image": "",
-    "rarity": 0,
+    "rarity": 2,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -438,9 +362,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "啤酒鸭",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -448,9 +372,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "小炒仔排",
     "image": "",
-    "rarity": 0,
+    "rarity": 3,
     "package": "",
     "unlock_level": "",
     "description": "",
@@ -458,59 +382,9 @@
     "decompose_materials": {}
   },
   {
-    "name": "",
+    "name": "甜豆花",
     "image": "",
-    "rarity": 0,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "",
-    "image": "",
-    "rarity": 0,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "",
-    "image": "",
-    "rarity": 0,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "",
-    "image": "",
-    "rarity": 0,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "",
-    "image": "",
-    "rarity": 0,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "",
-    "image": "",
-    "rarity": 0,
+    "rarity": 2,
     "package": "",
     "unlock_level": "",
     "description": "",

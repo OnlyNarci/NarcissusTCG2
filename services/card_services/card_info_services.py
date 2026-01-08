@@ -1,7 +1,7 @@
-from typing import List, Optional
+from typing import List, Dict, Optional
 from tortoise.exceptions import DoesNotExist
 from schemas.card_schemas import UserCardParams, CardParams
-from db.models import Card
+from db.models import Card, UserCard
 from db.model_dependencies import Package
 
 
@@ -34,15 +34,31 @@ async def query_card_info_service(card_name: str) -> Optional[CardParams]:
     )
 
 
-async def query_package_catalog_service(package: Package) -> List[str]:
+async def query_package_catalog_service(
+    user_id: int,
+    package: Package
+) -> Optional[Dict[str, int]]:
     """
     查看指定拓展包的全部可收集卡牌
     
+    :param user_id: 用户id
     :param package: 扩展包名称
     """
-    cards = await Card.filter(package=package).values('rarity', 'name')
+    cards = await Card.filter(package=package).values('id', 'name')
+    if not cards:
+        return None
+    user_cards = await UserCard.filter(
+        user_id=user_id,
+        card_id__in=[card['id'] for card in cards]
+    ).values('card_id', 'number')
+    user_card_dict = {card['card_id']: card['number'] for card in user_cards}
+    
     cards.sort(key=lambda x: int(x['rarity']), reverse=True)
-    return list([card['name'] for card in cards])
+    catalog = {}
+    for card in cards:
+        catalog[card['name']] = user_card_dict.get(card['id'], 0)
+    
+    return catalog
     
     
 async def query_card_compose_materials_service(card_id: int) -> List[UserCardParams] | str:

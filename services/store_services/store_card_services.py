@@ -219,28 +219,28 @@ async def delist_card_service(
 	if not store_card:
 		raise UnAtomicError(message='card not found')
 	
-	# 2.为用户增加下架后的卡牌
-	user_card = await UserCard.filter(
-		user_id=user_id,
-		card_id=store_card.card.id
-	).select_for_update().first()
-	if user_card:
-		user_card.number += store_card.number
-		await user_card.save()
-	else:
-		await UserCard.create(
-			user_id=user_id,
-			card_id=store_card.card.id,
-			number=store_card.number,
-		)
-	
-	# 3.扣除商店中下架的卡牌
+	# 2.扣除商店中下架的卡牌
 	# 如果指定下架数量为0或大于等于商店中的数量，全部下架
-	if not card_to_delist.number or store_card.number >= card_to_delist.number:
+	if store_card.number <= card_to_delist.number:
 		card_to_delist.number = store_card.number
 		await store_card.delete()
 	else:
 		store_card.number -= card_to_delist.number
 		await store_card.save()
+		
+	# 3.为用户增加下架后的卡牌
+	user_card = await UserCard.filter(
+		user_id=user_id,
+		card_id=store_card.card.id
+	).select_for_update().first()
+	if user_card:
+		user_card.number += card_to_delist.number
+		await user_card.save()
+	else:
+		await UserCard.create(
+			user_id=user_id,
+			card_id=store_card.card.id,
+			number=card_to_delist.number,
+		)
 	
 	return store_card.card.name, card_to_delist.number

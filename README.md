@@ -35,7 +35,7 @@
    - 执行数据库迁移：
      ```bash
      aerich init -t core.config.TORTOISE_ORM_CONFIG
-     aerich upgrade
+     aerich init-db
      ```
 
 4. **配置机器人**

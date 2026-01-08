@@ -67,18 +67,18 @@ class MessageType(IntEnum):
 
 class RestaurantBusiness(StrEnum):
     NOT_OPEN = '未开业'
-    SOUTH_FLAVOR = '华南风味'
-    NORTH_FLAVOR = '京鲁风味'
-    BASHU_FLAVOR = '巴蜀风味'
-    ETHNIC_FLAVOR = '民族风味'
+    SOUTH_FLAVOR = '粤菜'     # 华南地区菜品
+    NORTH_FLAVOR = '鲁菜'     # 华北地区菜品
+    BASHU_FLAVOR = '川菜'     # 云贵川地区菜品
+    ETHNIC_FLAVOR = '民族'    # 少数民族特色菜品
     
     
 restaurant_map = {
     '未开业': RestaurantBusiness.NOT_OPEN,
-    '华南风味': RestaurantBusiness.SOUTH_FLAVOR,
-    '京鲁风味': RestaurantBusiness.NORTH_FLAVOR,
-    '巴蜀风味': RestaurantBusiness.BASHU_FLAVOR,
-    '民族风味': RestaurantBusiness.ETHNIC_FLAVOR
+    '粤菜': RestaurantBusiness.SOUTH_FLAVOR,
+    '鲁菜': RestaurantBusiness.NORTH_FLAVOR,
+    '川菜': RestaurantBusiness.BASHU_FLAVOR,
+    '民族': RestaurantBusiness.ETHNIC_FLAVOR
 }
 
 

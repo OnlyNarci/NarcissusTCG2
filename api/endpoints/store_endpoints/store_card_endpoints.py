@@ -9,7 +9,7 @@ from core.exceptions import UnAtomicError
 from db.model_dependencies import card_rarity_map, package_map
 from schemas.card_schemas import StoreCardParams
 from services.store_services.store_card_services import query_store_service, list_card_service, delist_card_service, buy_card_service
-from log.log_config.service_logger import info_logger, err_logger
+from log.log_config.service_logger import info_logger
 
 
 query_cmd = on_command('卡牌商店', priority=1, block=True)
@@ -66,7 +66,7 @@ async def query_store_endpoint(
 
     forward_msg = node1 + node2
     
-    info_logger.info(f'success in get store. params: user_id={user_id}, name_in={name_in}, rarity={card_rarity}')
+    info_logger.info(f'success in get store card. params: user_id={user_id}, name_in={name_in}, rarity={card_rarity}')
     await query_cmd.finish(forward_msg)
 
 
@@ -121,7 +121,7 @@ async def list_card_endpoint(
 delist_alc = Alconna(
     '/下架卡牌',
     Args["store_id", int],
-    Args["number", int, 0],
+    Args["number", int, 1],
 )
 delist_cmd = on_alconna(delist_alc, priority=1, block=True)
 
@@ -142,7 +142,7 @@ async def delist_card_endpoint(
     store_id = result.all_matched_args.get('store_id', None)
     if store_id is None:
         await delist_cmd.finish('请输入要下架卡牌的商店编号，例: /下架卡牌 1')
-    number = result.all_matched_args.get('number', 0)
+    number = result.all_matched_args.get('number', 1)
     
     try:
         card_to_delist = StoreCardParams(

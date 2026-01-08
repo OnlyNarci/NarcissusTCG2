@@ -1,42 +1,77 @@
 [
   {
-    "name": "酱油炒饭",
+    "name": "豆豉",
     "image": "",
-    "rarity": 2,
-    "package": "",
-    "unlock_level": "",
+    "rarity": 1,
+    "package": "粤菜",
+    "unlock_level": 1,
+    "description": "",
+    "compose_materials": {
+      "黄豆": 1
+    },
+    "decompose_materials": {}
+  },
+  {
+    "name": "大蒜",
+    "image": "",
+    "rarity": 1,
+    "package": "粤菜",
+    "unlock_level": 1,
     "description": "",
     "compose_materials": {},
     "decompose_materials": {}
+  },
+  {
+    "name": "鸡肉",
+    "image": "",
+    "rarity": 2,
+    "package": "粤菜",
+    "unlock_level": 1,
+    "description": "是鸡肉不是肌肉",
+    "compose_materials": {},
+    "decompose_materials": {}
+  },
+  {
+    "name": "生鸡",
+    "image": "",
+    "rarity": 3,
+    "package": "粤菜",
+    "unlock_level": 1,
+    "description": "",
+    "compose_materials": {
+      "鸡肉": 2,
+      "鸡杂": 1
+    },
+    "decompose_materials": {
+      "鸡肉": 2,
+      "鸡杂": 1
+    }
   },
   {
     "name": "白切鸡",
     "image": "",
     "rarity": 3,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
+    "package": "粤菜",
+    "unlock_level": 1,
+    "description": "传说菜品，竟然只要史诗品质",
+    "compose_materials": {
+      "鸡肉": 3
+    },
     "decompose_materials": {}
   },
   {
-    "name": "盐水鸭",
-    "image": "",
-    "rarity": 3,
-    "package": "",
-    "unlock_level": "",
-    "description": "",
-    "compose_materials": {},
-    "decompose_materials": {}
-  },
-  {
-    "name": "文思豆腐",
+    "name": "烤乳猪",
     "image": "",
     "rarity": 4,
     "package": "",
     "unlock_level": "",
     "description": "",
-    "compose_materials": {},
+    "compose_materials": {
+      "生猪": 2,
+      "香料": 6,
+      "酒": 2,
+      "酱料": 2
+    },
     "decompose_materials": {}
   },
   {
