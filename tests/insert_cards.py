@@ -2,7 +2,7 @@ import asyncio
 import json
 from tortoise import Tortoise
 from db.models import Card
-from core.config import TORTOISE_ORM_CONFIG
+from core.config import TORTOISE_ORM_CONFIG, project_root
 
 
 async def init_db():
@@ -11,7 +11,7 @@ async def init_db():
     
 async def main():
     await init_db()
-    with open('D:\\SFW\\python_learning\\NoneBotProject\\NarcissusTCG2\\static\\base_card_design.json', 'r', encoding='utf-8') as f:
+    with open(project_root / 'static' / 'base_card_design.json', 'r', encoding='utf-8') as f:
         cards = json.load(f)
     for card in cards:
         await Card.create(

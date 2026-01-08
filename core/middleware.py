@@ -64,11 +64,11 @@ async def get_user_id(
     state['user_uid'] = user_uid
     state['user_name'] = event.sender.nickname
     
+    message_text_content = message_text[1:]
     if isinstance(event, GroupMessageEvent):
         group_id = event.group_id
         state['group_id'] = group_id
         
-        message_text_content = message_text[1:]
         if message_text_content.startswith(tuple(tourist_routes)):
             info_logger.info(f'got tourist request. prams: user_uid={user_uid}, message={message_text_content}')
             return  # 游客请求

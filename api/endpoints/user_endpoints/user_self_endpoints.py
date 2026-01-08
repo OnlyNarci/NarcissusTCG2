@@ -27,7 +27,7 @@ async def register_user_endpoint(
     )
     if response['success']:
         info_logger.info(f'user registered successfully: uid={user_uid}, name={user_name}')
-        await auth_cmd.finish('注册成功，赠送1000比特，使用/help查看玩法。')
+        await auth_cmd.finish('注册成功，赠送5000比特，使用/help查看玩法。')
     else:
         await auth_cmd.finish('您已经注册过了。')
         info_logger.info(f'user registered failed, has registered before: uid={user_uid}, name={user_name}')

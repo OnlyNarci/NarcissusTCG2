@@ -179,7 +179,7 @@ class Group(Model):
     created_at = fields.DatetimeField(auto_now_add=True, description='创建日期')
     
     class Meta:
-        table = 'Group'
+        table = 'group'
 
 
 class GroupUser(Model):
@@ -251,6 +251,7 @@ class Restaurant(Model):
         description='餐厅主人，每一家餐厅都有一个主人，每一个用户只能有一家餐厅'
     )
 
+    level = fields.IntField(default=1, description='餐厅等级，等级越高越容易接到高级订单')
     main_business = fields.CharEnumField(
         enum_type=RestaurantBusiness,
         null=False,

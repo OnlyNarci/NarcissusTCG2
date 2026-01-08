@@ -30,7 +30,7 @@ async def create_user(
         await User.create(
             uid=user_uid,
             name=user_name,
-            byte=1000
+            byte=5000
         )
         return {
             'success': True,
@@ -99,9 +99,9 @@ async def check_in_service(
     :param user_id: 用户id
     :return: 本次签到实际增加的byte数量
     """
-    MIN_ADD = 80
-    MAX_ADD = 160
-    BASE_MEAN = 80
+    MIN_ADD = 200
+    MAX_ADD = 400
+    BASE_MEAN = 210
     LEVEL_COEFF = 1
     STD_DEV = 8
     
