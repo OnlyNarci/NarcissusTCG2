@@ -100,7 +100,7 @@ async def pull_card_endpoint(
         await pull_cmd.finish(f'比特不足，需要{e.data.get('required_byte', None)}比特。')
         return
     
-    msg = f'获得{times}张卡牌\n'
+    msg = f'获得{times}张卡牌\n\n'
     msg += '\n'.join([f"{card.name} * {card.number}" for card in cards])
     
     forward_msg = MessageSegment.node_custom(
@@ -131,11 +131,14 @@ async def compose_card_endpoint(
     :param state: 请求状态，用于获取玩家id
     :param result: 解析的请求参数，包含目标合成卡牌和抽卡次数
     """
+    user_id = state.get('user_id')
+    user_uid = state.get('user_uid')
+    at_msg = MessageSegment.at(user_id=user_uid)
+    
     card_name: str = result.all_matched_args.get("card_name", "")
     if not card_name:
         await compose_cmd.finish(f'未知卡牌: {card_name}。')
     number: int = result.all_matched_args.get("number", 1)
-    user_id = state.get('user_id')
     
     try:
         await compose_card_service(
@@ -144,16 +147,16 @@ async def compose_card_endpoint(
             number=number,
         )
         info_logger.info(f'success in compose card. params: user_id={user_id}, card_to_compose={card_name}, number={number}')
-        await compose_cmd.finish(f'合成成功，获得卡牌: {card_name} * {number}')
+        await compose_cmd.finish(f'合成成功，获得卡牌: {card_name} * {number}。' + at_msg)
     except UnAtomicError as e:
         info_logger.info(f'failed to compose cards, cause {e.message}. params: user_id={state.get("user_id")}, card_name={card_name}, number={number}')
         match e.message:
             case 'card not found':
-                await compose_cmd.finish(f'未知卡牌: {card_name}。')
+                await compose_cmd.finish(f'未知卡牌: {card_name}。' + at_msg)
             case 'not allow compose':
-                await compose_cmd.finish(f'无法合成: {card_name}。')
+                await compose_cmd.finish(f'无法合成: {card_name}。' + at_msg)
             case 'level not enough':
-                await compose_cmd.finish(f'等级不足，将在{e.data.get('unlock_level', 'unknown')}级解锁')
+                await compose_cmd.finish(f'等级不足，将在{e.data.get('unlock_level', 'unknown')}级解锁。' + at_msg)
             case 'materials not enough':
                 msg = f'缺少卡牌\n'
                 msg += '\n'.join([f"{card.name} * {card.number}" for card in e.data.get('lack_materials', [])])
@@ -164,7 +167,7 @@ async def compose_card_endpoint(
                 )
                 await box_cmd.finish(forward_msg)
             case _:
-                raise ServerError(error_code=ErrorCodes.InternalServerError, message='真tmd见鬼了')
+                await compose_cmd.finish('那真tmd见鬼了！' + at_msg)
                 
 
 decompose_alc = Alconna(

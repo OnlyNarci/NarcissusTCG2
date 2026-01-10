@@ -91,10 +91,12 @@ async def list_card_endpoint(
     :param result: 解析的请求参数，包含卡牌名称、上架数量、挂单价格
     """
     user_id = state.get('user_id')
+    user_uid = state.get('user_uid')
     
     card_name = result.all_matched_args.get('card_name', "")
     number = result.all_matched_args.get('number', 1)
     price = result.all_matched_args.get('price', 1000)
+    at_msg = MessageSegment.at(user_id=user_uid)
     try:
         card_to_list = StoreCardParams(
             name=card_name,
@@ -103,7 +105,7 @@ async def list_card_endpoint(
         )
     except ValidationError as e:
         info_logger.error(f'failed to list card, cause: {e}. params: user_id={user_id}, card_name={card_name}, number={number}, price={price}')
-        await list_cmd.finish('请输入正确指令。例: /上架卡牌 木块')
+        await list_cmd.finish('请输入正确指令。例: /上架卡牌 木块' + at_msg)
         return
     
     try:
@@ -112,10 +114,10 @@ async def list_card_endpoint(
             card_to_list=card_to_list,
         )
         info_logger.info(f'success in list card. params: user_id={user_id}, card_name={card_name}, number={number}, price={price}')
-        await list_cmd.finish(f'成功上架卡牌: {card_name} * {number}。\n编号: {store_card_id}\n单价{price}')
+        await list_cmd.finish(f'成功上架卡牌: {card_name} * {number}。\n编号: {store_card_id}，单价{price}' + at_msg)
     except UnAtomicError:
         info_logger.info(f'failed to list card, cause: card not enough. params: user_id={user_id}, card_name={card_name}, number={number}, price={price}')
-        await list_cmd.finish('主厨您好像没有这么多卡牌呢。')
+        await list_cmd.finish('主厨您好像没有这么多卡牌呢。' + at_msg)
         
 
 delist_alc = Alconna(
@@ -138,10 +140,12 @@ async def delist_card_endpoint(
     :param result: 解析的请求参数，包含商店id
     """
     user_id = state.get('user_id')
+    user_uid = state.get('user_uid')
+    at_msg = MessageSegment.at(user_id=user_uid)
     
     store_id = result.all_matched_args.get('store_id', None)
     if store_id is None:
-        await delist_cmd.finish('请输入要下架卡牌的商店编号，例: /下架卡牌 1')
+        await delist_cmd.finish('请输入要下架卡牌的商店编号，例: /下架卡牌 1' + at_msg)
     number = result.all_matched_args.get('number', 1)
     
     try:
@@ -151,7 +155,7 @@ async def delist_card_endpoint(
         )
     except ValidationError as e:
         info_logger.error(f'failed to delist card, cause: {str(e)}. params: user_id={user_id}, store_id={store_id}, number={number}')
-        await delist_cmd.finish('请输入正确指令，例: /下架卡牌 1')
+        await delist_cmd.finish('请输入正确指令，例: /下架卡牌 1' + at_msg)
         return
     
     try:
@@ -160,10 +164,10 @@ async def delist_card_endpoint(
             card_to_delist=card_to_delist,
         )
         info_logger.info(f'success in delist card. params: user_id={user_id}, store_id={store_id}, number={delist_num}')
-        await delist_cmd.finish(f'成功下架卡牌: {card_name} * {delist_num}。')
+        await delist_cmd.finish(f'成功下架卡牌: {card_name} * {delist_num}。' + at_msg)
     except UnAtomicError:
         info_logger.info(f'failed to delist card, cause: card not enough. params: user_id={user_id}, store_id={store_id}, number={number}')
-        await delist_cmd.finish('卡牌不见踪迹，我也无能为力(可能已被其他玩家购买，请查看交易记录)。')
+        await delist_cmd.finish('可能已被其他玩家购买，请查看交易记录。' + at_msg)
         
 
 buy_alc = Alconna(
@@ -186,10 +190,12 @@ async def buy_card_endpoint(
     :param result: 解析的请求参数，包含商店id、购买数量
     """
     user_id = state.get('user_id')
+    user_uid = state.get('user_uid')
+    at_msg = MessageSegment.at(user_id=user_uid)
     
     store_id = result.all_matched_args.get('store_id', None)
     if store_id is None:
-        await buy_cmd.finish('请输入要购买卡牌的商店编号，例: /购买卡牌 1')
+        await buy_cmd.finish('请输入要购买卡牌的商店编号，例: /购买卡牌 1' + at_msg)
     number = result.all_matched_args.get('number', 1)
     
     try:
@@ -199,7 +205,7 @@ async def buy_card_endpoint(
         )
     except ValidationError as e:
         info_logger.error(f'failed to buy card, cause: {str(e)}. params: user_id={user_id}, store_id={store_id}, number={number}')
-        await buy_cmd.finish('请输入正确指令，例: /购买卡牌 1')
+        await buy_cmd.finish('请输入正确指令，例: /购买卡牌 1' + at_msg)
         return
     
     try:
@@ -208,19 +214,19 @@ async def buy_card_endpoint(
             card_to_buy=card_to_buy,
         )
         info_logger.info(f'success in buy card. params: user_id={user_id}, store_id={store_id}, number={number}')
-        await buy_cmd.finish(f'成功购买卡牌: {card_name} * {number}，消耗 {need_byte} 比特。')
+        await buy_cmd.finish(f'成功购买卡牌: {card_name} * {number}，消耗 {need_byte} 比特。' + at_msg)
     except UnAtomicError as e:
         info_logger.info(f'failed to buy card, cause: {e.message}. params: user_id={user_id}, store_id={store_id}, number={number}')
         match e.message:
             case 'card not found':
-                await buy_cmd.finish('卡牌不见踪迹，我也无能为力。')
+                await buy_cmd.finish('可能已被其他玩家购买。' + at_msg)
             case 'can not buy self card':
-                await buy_cmd.finish('无法购买自己上架的卡牌，请使用 /下架卡牌。')
+                await buy_cmd.finish('无法购买自己上架的卡牌，请使用 /下架卡牌。' + at_msg)
             case 'trade today too march':
-                await buy_cmd.finish('今天您已经买了太多卡牌啦，休息一下吧~')
+                await buy_cmd.finish('今天您已经买了太多卡牌啦，休息一下吧~' + at_msg)
             case 'user byte not enough':
-                await buy_cmd.finish('比特好像不够了呢。')
+                await buy_cmd.finish('比特好像不够了呢。' + at_msg)
             case 'user level not enough':
-                await buy_cmd.finish('您还没有解锁这张卡牌。')
+                await buy_cmd.finish('您还没有解锁这张卡牌。' + at_msg)
             case _:
-                await buy_cmd.finish('那真tmd见鬼了！')
+                await buy_cmd.finish('那真tmd见鬼了！' + at_msg)

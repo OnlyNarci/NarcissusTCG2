@@ -1,8 +1,10 @@
 import random
+from typing import Optional, List
 from datetime import date, timedelta
 from tortoise.transactions import atomic
 from tortoise.exceptions import IntegrityError, DoesNotExist
-from db.models import User
+from core.exceptions import UnAtomicError
+from db.models import User, Card
 from db.model_dependencies import RestaurantBusiness
 from schemas.base_schemas import UserParams
 from self_types.service_type import ServiceResponse
@@ -45,48 +47,30 @@ async def create_user(
 
 async def get_user_info_service(
     user_uid: int,
-) -> ServiceResponse:
+) -> Optional[UserParams]:
     """
     返回用户个人信息
     
     :param user_uid: 用户qq号
     
     :return: 用户个人信息模型
-    :return type:
-        {
-            'success': bool,
-            'message': str,
-            'data': {
-                'user_info': Optional[UserParams]
-            }
-        }
     """
     try:
         user = await User.get(uid=str(user_uid))
     except DoesNotExist:
-        return {
-            'success': False,
-            'message': 'user does not exist',
-            'data': {
-                'user_info': None
-            }
-        }
+        return None
 
     restaurant = await user.restaurant.all().first()
-    return {
-        'success': True,
-        'message': 'success in getting user info',
-        'data': {
-            'user_info': UserParams(
-                uid=user.uid,
-                name=user.name,
-                title=user.title,
-                level=user.level,
-                byte=user.byte,
-                main_business=restaurant.main_business if restaurant is not None else RestaurantBusiness.NOT_OPEN
-            )
-        }
-    }
+    return UserParams(
+        uid=user.uid,
+        name=user.name,
+        title=user.title,
+        level=user.level,
+        byte=user.byte,
+        exp=user.exp,
+        require_exp=user.level*100 + 1000,
+        main_business=restaurant.main_business if restaurant is not None else RestaurantBusiness.NOT_OPEN
+    )
 
 
 @atomic()
@@ -168,6 +152,24 @@ async def update_self_info_service(
     await user.save()
 
 
-async def user_upgrade_service():
-    pass
+@atomic()
+async def user_upgrade_service(user_id: int) -> List[str]:
+    """
+    玩家升级服务
+    
+    :param user_id: 玩家id
+    :return: 升级后解锁的新卡牌名称列表
+    """
+    user = await User.filter(id=user_id).select_for_update().first()
+    require_exp = user.level * 100 + 1000
+    if user.exp < require_exp:
+        raise UnAtomicError(message='exp not enough', require_exp=require_exp - user.exp)
+    
+    user.exp -= require_exp
+    user.level += 1
+    unlock_card = await Card.filter(unlock_level=user.level)
+    return [
+        card.name
+        for card in unlock_card
+    ]
     

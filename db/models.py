@@ -223,17 +223,16 @@ class Order(Model):
         model_name='models.User',
         related_name='order',
     )
-    require_card: Dict[str, int] = fields.JSONField(default=dict, description='订单需要的卡牌，键为卡牌id，值为数量')
+    require_cards: Dict[str, int] = fields.JSONField(default=dict, description='订单需要的卡牌，键为卡牌id，值为数量')
     byte = fields.IntField(description='完成订单可以获得的比特')
     exp = fields.IntField(description='完成订单可以获得的经验')
     status = fields.IntEnumField(
         enum_type=OrderStatus,
         null=False,
         default=OrderStatus.WAITING,
-        description='0为待完成，1为已完成，2为订单超时，3为用户拒绝了订单'
+        description='0为未完成，1为已完成'
     )
-    created_at = fields.DatetimeField(auto_now_add=True, description='订单创建时间，用户上线后为其分发订单')
-    expires_at = fields.DatetimeField(description='订单过期时间（创建当日24:00过期），超时后自动将status改为3')
+    created_at = fields.DateField(auto_now_add=True, description='订单创建时间，用户上线后为其分发订单')
     
     class Meta:
         table = 'order'

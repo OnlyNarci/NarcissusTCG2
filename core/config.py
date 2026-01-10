@@ -67,4 +67,4 @@ TORTOISE_ORM_CONFIG = {
     }
 
 
-project_root = Path('')
+project_root = Path('D:\\SFW\\python_learning\\NoneBotProject\\NarcissusTCG2')

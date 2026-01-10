@@ -1,9 +1,9 @@
 from nonebot import on_command
 from nonebot.typing import T_State
 from nonebot.params import CommandArg
-from nonebot.adapters.onebot.v11 import Message
-from core.exceptions import ErrorCodes, ServerError
-from services.user_services.user_self_services import create_user, get_user_info_service, check_in_service
+from nonebot.adapters.onebot.v11 import Message, MessageSegment
+from core.exceptions import ErrorCodes, ServerError, UnAtomicError
+from services.user_services.user_self_services import create_user, get_user_info_service, check_in_service, user_upgrade_service
 from log.log_config.service_logger import info_logger, err_logger
 
 
@@ -25,11 +25,12 @@ async def register_user_endpoint(
         user_uid=user_uid,
         user_name=user_name,
     )
+    at_msg = MessageSegment.at(user_id=user_uid)
     if response['success']:
         info_logger.info(f'user registered successfully: uid={user_uid}, name={user_name}')
-        await auth_cmd.finish('注册成功，赠送5000比特，使用/help查看玩法。')
+        await auth_cmd.finish('注册成功，赠送5000比特，使用/help查看玩法。' + at_msg)
     else:
-        await auth_cmd.finish('您已经注册过了。')
+        await auth_cmd.finish('您已经注册过了。' + at_msg)
         info_logger.info(f'user registered failed, has registered before: uid={user_uid}, name={user_name}')
 
 
@@ -54,11 +55,10 @@ async def get_user_info_endpoint(
         user_uid = state.get('user_uid')
         
     try:
-        user_info_dict = await get_user_info_service(user_uid=user_uid)
-        if user_info_dict['success']:
-            user_info = user_info_dict['data']['user_info']
+        user_info = await get_user_info_service(user_uid=user_uid)
+        if user_info is not None:
             info_logger.info(f'get user info success: user_uid={user_uid}')
-            await info_cmd.send(f"玩家: {user_info.name}\n称号: {user_info.title}\n等级: {user_info.level}\n比特: {user_info.byte}\n主营业务: {user_info.main_business}")
+            await info_cmd.send(f"玩家: {user_info.name}\n称号: {user_info.title}\n等级: {user_info.level}\n经验: {user_info.exp} / {user_info.require_exp}\n比特: {user_info.byte}\n主营业务: {user_info.main_business}")
         else:
             info_logger.info('get user info failed, user does not exist')
             await info_cmd.send('该玩家还没有注册。')
@@ -91,3 +91,28 @@ async def check_in_endpoint(
         await check_in_cmd.finish(msg)
     else:
         await check_in_cmd.finish('您今天已经签到过了。')
+        
+
+upgrade_cmd = on_command('升级', priority=1, block=True)
+
+
+@upgrade_cmd.handle()
+async def upgrade_endpoint(
+    state: T_State,
+) -> None:
+    """
+    升级接口
+    
+    :param state: 请求状态，用于获取玩家id
+    """
+    user_id = state.get('user_id')
+    try:
+        unlock_cards = await user_upgrade_service(
+            user_id=user_id,
+        )
+        info_logger.info(f'success in upgrade. params: user_id={user_id}')
+        await upgrade_cmd.finish(f'升级成功，解锁卡牌 {'、'.join(unlock_cards)}。')
+    except UnAtomicError as e:
+        info_logger.info(f'failed to upgrade. params: user_id={user_id}')
+        await upgrade_cmd.finish(f'经验值不足，距离下次升级还需要 {e.data.get('require_exp')}。')
+    

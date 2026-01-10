@@ -28,6 +28,13 @@ card_rarity_map = {
     '传说': CardRarity.LEGENDARY,
     'SP': CardRarity.SPECIAL
 }
+# 各品质卡牌的内在价值
+card_worth = {
+    CardRarity.COMMON: 7,
+    CardRarity.RARE: 21,
+    CardRarity.EPIC: 63,
+    CardRarity.LEGENDARY: 189
+}
 reverse_card_rarity_map = {
     1: '普通',
     2: '稀有',
@@ -43,8 +50,6 @@ class OrderStatus(IntEnum):
     """
     WAITING = 0     # 待完成
     CONFIRM = 1     # 已完成
-    TIMEOUT = 2     # 超时
-    REJECTED = 3    # 用户主动删除
     
 
 class GroupMemberStatus(IntEnum):
@@ -84,10 +89,10 @@ restaurant_map = {
 
 class Package(StrEnum):
     BASE = 'base'
-    SOUTH_FLAVOR = '华南风味'
-    NORTH_FLAVOR = '京鲁风味'
-    BASHU_FLAVOR = '巴蜀风味'
-    ETHNIC_FLAVOR = '民族风味'
+    SOUTH_FLAVOR = '粤菜'
+    NORTH_FLAVOR = '鲁菜'
+    BASHU_FLAVOR = '川菜'
+    ETHNIC_FLAVOR = '民族'
     
     
 package_map = {
