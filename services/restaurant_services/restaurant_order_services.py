@@ -57,6 +57,7 @@ async def query_orders_service(user_id: int) -> List[OrderParams]:
                 require_cards={card_name_map[card_id]: num for card_id, num in order.require_cards.items()},
                 byte=order.byte,
                 exp=order.exp,
+                status=order.status,
                 expire_at=datetime(local_today.year, local_today.month, local_today.day+1, 8),
             )
             for order in orders if order.status == OrderStatus.WAITING

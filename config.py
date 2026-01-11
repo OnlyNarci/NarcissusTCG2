@@ -2,6 +2,7 @@
 NoneBot2 QQ 机器人配置文件
 """
 import json
+from datetime import timedelta
 from nonebot import get_driver
 from core.config import project_root
 
@@ -16,7 +17,7 @@ driver.config.onebot_ws_urls = ["ws://127.0.0.1:3001"]
 driver.config.log_level = "INFO"  # 日志级别: DEBUG, INFO, WARNING, ERROR
 
 # 会话超时时间（秒）
-driver.config.session_expire_timeout = 120
+driver.config.session_expire_timeout = timedelta(seconds=120)
 
 allow_groups_file = project_root / 'core' / 'ALLOW_GROUPS.json'
 f = open(allow_groups_file, 'r', encoding='utf-8')

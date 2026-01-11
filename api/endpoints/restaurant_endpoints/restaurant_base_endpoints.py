@@ -26,8 +26,7 @@ async def query_restaurant_endpoint(state: T_State) -> None:
     if user_restaurant is None:
         await query_cmd.finish('您的餐馆还未开业，使用 /开业 开始经营餐馆吧' + at_msg)
     else:
-        await query_cmd.finish(
-            f'{at_msg}\n等级: {user_restaurant.level}\n主营业务: {user_restaurant.main_business.value}\n上次修改业务: {user_restaurant.last_change_business}\n开业时间: {user_restaurant.created_at}')
+        await query_cmd.finish(at_msg + f'\n等级: {user_restaurant.level}\n主营业务: {user_restaurant.main_business.value}\n上次修改业务: {user_restaurant.last_change_business}\n开业时间: {user_restaurant.created_at}')
 
 
 open_alc = Alconna(
@@ -49,7 +48,7 @@ async def open_business_endpoint(
     :param result: 解析的请求参数，包含餐馆主营业务
     """
     user_id = state.get('user_id')
-    business = RestaurantBusiness(result.get('business'))
+    business = RestaurantBusiness(result.all_matched_args.get('business'))
     at_msg = MessageSegment.at(user_id=state.get('user_uid'))
     
     if business is None or business == RestaurantBusiness.NOT_OPEN:
@@ -85,7 +84,7 @@ async def change_business_endpoint(
     :param result: 解析的请求参数，包含新的餐馆主营业务
     """
     user_id = state.get('user_id')
-    business = RestaurantBusiness(result.get('business'))
+    business = RestaurantBusiness(result.all_matched_args.get('business'))
     at_msg = MessageSegment.at(user_id=state.get('user_uid'))
     
     if business is None or business == RestaurantBusiness.NOT_OPEN:

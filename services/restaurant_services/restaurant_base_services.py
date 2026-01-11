@@ -25,7 +25,7 @@ async def query_restaurant_info_service(
                 level=user_restaurant.level,
                 main_business=user_restaurant.main_business,
                 last_change_business=user_restaurant.last_change_business,
-                created_at=user_restaurant.created_at,
+                created_at=user_restaurant.created_at.date(),
             )
     except DoesNotExist:
         return None
@@ -46,7 +46,7 @@ async def change_main_business_service(
     today = date.today()
     try:
         user_restaurant = await Restaurant.get(user_id=user_id)
-        if user_restaurant.main_business != business and (today - user_restaurant.last_change_business).day > 30:
+        if user_restaurant.main_business != business and (today - user_restaurant.last_change_business).days > 30:
             user_restaurant.main_business = business
             user_restaurant.last_change_business = today
             await user_restaurant.save()

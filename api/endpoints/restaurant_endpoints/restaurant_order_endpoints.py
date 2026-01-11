@@ -7,7 +7,7 @@ from nonebot.params import CommandArg
 from nonebot.adapters.onebot.v11 import Message, MessageSegment
 from nonebot_plugin_alconna import on_alconna, Arparma
 from arclet.alconna import Alconna, Args
-from db.model_dependencies import RestaurantBusiness
+from db.model_dependencies import RestaurantBusiness, OrderStatus
 from services.restaurant_services.restaurant_order_services import (
     query_orders_service,
     query_history_order_service,
@@ -36,17 +36,22 @@ async def query_order_endpoint(
     """
     user_id = state.get('user_id')
     user_uid = state.get('user_uid')
-    trade_date = result.get('trade_date')
+    trade_date = result.all_matched_args.get('trade_date')
+    
     at_msg = MessageSegment.at(user_id=user_uid)
     try:
-        waiting_orders = await query_orders_service(user_id=user_id)
+        if trade_date == date.today():
+            orders = await query_orders_service(user_id=user_id)
+        else:
+            orders = await query_history_order_service(user_id=user_id, trade_date=trade_date)
+            
         forward_msg = MessageSegment.node_custom(
             user_id=user_uid,
             nickname='今日订单',
             content='今日订单'
         )
-        for order in waiting_orders:
-            msg = f'订单编号: {order.order_id}\n获得比特: {order.byte}\n获得经验: {order.exp}\n过期时间: {order.expire_at}\n需要卡牌: {', '.join([f'{card_name * num}' for card_name, num in order.require_cards])}\n'
+        for order in orders:
+            msg = f'订单编号: {order.order_id}\n获得比特: {order.byte}\n获得经验: {order.exp}\n过期时间: {order.expire_at}\n完成情况: {'已完成' if order.status == OrderStatus.CONFIRM else '未完成'}\n需要卡牌: {', '.join([f'{card_name * num}' for card_name, num in order.require_cards])}\n'
             node = MessageSegment.node_custom(
                 user_id=user_id,
                 nickname='今日订单',
