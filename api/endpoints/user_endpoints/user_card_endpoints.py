@@ -161,7 +161,7 @@ async def compose_card_endpoint(
                 msg = f'缺少卡牌\n'
                 msg += '\n'.join([f"{card.name} * {card.number}" for card in e.data.get('lack_materials', [])])
                 forward_msg = MessageSegment.node_custom(
-                    user_id=user_id,
+                    user_id=user_uid,
                     nickname='缺少材料',
                     content=msg
                 )
@@ -195,6 +195,7 @@ async def decompose_card_endpoint(
     number: int = result.all_matched_args.get("number", 1)
     
     user_id = state.get('user_id')
+    user_uid = state.get('user_uid')
     
     try:
         user_cards = await decompose_card_service(
@@ -205,7 +206,7 @@ async def decompose_card_endpoint(
         msg = f'分解成功，获得卡牌\n'
         msg += '\n'.join([f"{card.name} * {card.number}" for card in user_cards])
         forward_msg = MessageSegment.node_custom(
-            user_id=user_id,
+            user_id=user_uid,
             nickname='获得卡牌',
             content=msg
         )

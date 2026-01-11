@@ -7,15 +7,13 @@ from core.extra_params import extra_params
 from core.exceptions import UnAtomicError
 from db.models import User, Card, UserCard, Order, Restaurant
 from db.model_dependencies import OrderStatus, CardRarity, card_worth
-from schemas.base_schemas import OrderParams
+from schemas.record_schemas import OrderParams
 from schemas.card_schemas import UserCardParams
 
 
-async def query_orders_service(
-    user_id: int
-) -> List[OrderParams]:
+async def query_orders_service(user_id: int) -> List[OrderParams]:
     """
-    查看待完成的订单，过期订单在此时删除
+    查看待完成的订单，如果今日未创建过订单则创建
     
     :param user_id: 用户id
     
@@ -31,7 +29,7 @@ async def query_orders_service(
     
     # 2.如果今日还未创建过订单，创建订单
     if not orders:
-        epic_num = random.randint(0, extra_params.ORDER_PER_DAY)
+        epic_num = random.randint(2, extra_params.ORDER_PER_DAY)
         waiting_orders = await generate_order_service(
             user_id=user_id,
             number=epic_num,
@@ -65,6 +63,44 @@ async def query_orders_service(
         ]
 
     return waiting_orders
+
+
+async def query_history_order_service(
+    user_id: int,
+    trade_date: date
+) -> List[OrderParams]:
+    """
+    查看指定日期的订单
+    
+    :param user_id: 用户id
+    :param trade_date: 日期
+    
+    :return: 该日期的订单
+    """
+    orders = await Order.filter(
+        user_id=user_id,
+        created_at=trade_date,
+    ).all()
+    card_id_set = set()
+    for order in orders:
+        for card_id in order.require_cards.keys():
+            card_id_set.add(int(card_id))
+    cards = await Card.filter(id__in=card_id_set).values('id', 'name')
+    card_name_map = {
+        card['id']: card['name']
+        for card in cards
+    }
+    return [
+        OrderParams(
+            order_id=order.id,
+            require_cards={card_name_map[card_id]: num for card_id, num in order.require_cards.items()},
+            byte=order.byte,
+            exp=order.exp,
+            status=order.status,
+            expire_at=datetime(trade_date.year, trade_date.month, trade_date.day+1, 8),
+        )
+        for order in orders
+    ]
 
 
 async def generate_order_service(
@@ -184,7 +220,7 @@ async def complete_order_service(
     }
     
     lack_cards: List[UserCardParams] = []
-    to_order_cards: List[UserCard] = []
+    to_update_cards: List[UserCard] = []
     # 记录缺少的卡牌
     for require_card_id, require_number in order_to_complete.require_cards.items():
         require_card_id = int(require_card_id)
@@ -192,11 +228,15 @@ async def complete_order_service(
             lack_number = require_number
         elif user_card_map[require_card_id].number < require_number:
             lack_number = require_number - user_card_map[require_card_id].number
+        elif user_card_map[require_card_id].number == require_number:
+            lack_number = 0
+            to_order_card = user_card_map[require_card_id]
+            await to_order_card.delete()
         else:
             lack_number = 0
             to_order_card = user_card_map[require_card_id]
             to_order_card.number -= require_number
-            to_order_cards.append(to_order_card)
+            to_update_cards.append(to_order_card)
             
         if lack_number != 0:
             lack_cards.append(UserCardParams(
@@ -213,7 +253,7 @@ async def complete_order_service(
         raise UnAtomicError(message='lack cards', lack_cards=lack_cards)
     
     # 3.扣除用户交付的卡牌
-    await UserCard.bulk_update(to_order_cards, fields=['number'])
+    await UserCard.bulk_update(to_update_cards, fields=['number'])
     
     # 4.修改订单状态为完成
     order_to_complete.status = OrderStatus.CONFIRM
@@ -229,4 +269,35 @@ async def complete_order_service(
         'exp': order_to_complete.exp,
         'byte': order_to_complete.byte
     }
+
+
+@atomic()
+async def generate_new_order_service(
+    user_id: int,
+    number: int,
+    rarity: CardRarity,
+) -> List[OrderParams]:
+    """
+    用户主动创建新订单服务
+    
+    :param user_id: 用户id
+    :param number: 新订单数量
+    :param rarity: 目标订单稀有度，创建史诗订单消耗10比特，创建传说订单消耗30比特
+    
+    :return: 新的订单
+    """
+    user = await User.get(id=user_id)
+    if rarity == CardRarity.EPIC:
+        user.byte -= number * 10
+    elif rarity == CardRarity.LEGENDARY:
+        user.byte -= number * 30
+    else:
+        raise ValueError(f'rarity {rarity} not supported')
+    
+    new_orders = await generate_order_service(
+        user_id=user_id,
+        number=number,
+        rarity=rarity,
+    )
+    return new_orders
     

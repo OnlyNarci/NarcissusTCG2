@@ -17,6 +17,8 @@ def setup_logging(
 
     :return: 日志配置对象
     """
+    if logger_name is None:
+        logger_name = 'NarcissusTCG2'
     # 配置日志
     log_path.mkdir(parents=True, exist_ok=True)  # 创建日志目录
     logger_list = []
@@ -26,7 +28,7 @@ def setup_logging(
         success_log_path = log_path / info_log_name
         success_logger = logging.getLogger(f'{logger_name}_success')
         success_logger.setLevel(logging.INFO)
-        success_handler = logging.FileHandler(success_log_path)
+        success_handler = logging.FileHandler(success_log_path, encoding='utf-8', mode='a')
         success_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
         success_handler.setFormatter(success_formatter)
         success_logger.addHandler(success_handler)
@@ -37,7 +39,7 @@ def setup_logging(
         error_log_path = log_path / err_log_name
         error_logger = logging.getLogger(f'{logger_name}_error')
         error_logger.setLevel(logging.ERROR)
-        error_handler = logging.FileHandler(error_log_path)
+        error_handler = logging.FileHandler(error_log_path, encoding='utf-8', mode='a')
         error_formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
         error_handler.setFormatter(error_formatter)
         error_logger.addHandler(error_handler)

@@ -1,5 +1,6 @@
+from nonebot import require, on_command
+require("nonebot_plugin_alconna")
 from pydantic import ValidationError
-from nonebot import on_command
 from nonebot.typing import T_State
 from nonebot.params import CommandArg
 from nonebot.adapters.onebot.v11 import Message, MessageSegment

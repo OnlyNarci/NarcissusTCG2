@@ -6,7 +6,7 @@ from tortoise.exceptions import IntegrityError, DoesNotExist
 from core.exceptions import UnAtomicError
 from db.models import User, Card
 from db.model_dependencies import RestaurantBusiness
-from schemas.base_schemas import UserParams
+from schemas.user_schemas import UserParams
 from self_types.service_type import ServiceResponse
 
 
@@ -131,25 +131,6 @@ async def check_in_service(
             'extra_byte': extra_byte
         }
     }
-    
-
-async def update_self_info_service(
-    user_id: int,
-    user_info: UserParams,
-) -> None:
-    """
-    修改个人信息
-    
-    :param user_id: 玩家id
-    :param user_info: 更新后的玩家信息
-    
-    :return: 修改成功返回 None，否则raise暂时还不知道的错误
-    """
-    user = await User.filter(id=user_id).select_for_update().first()
-    user.name = user_info.name
-    user.title = user_info.title
-
-    await user.save()
 
 
 @atomic()

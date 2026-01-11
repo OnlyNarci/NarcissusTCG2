@@ -18,6 +18,7 @@ nonebot.load_plugins("api/endpoints/plugins")
 nonebot.load_plugins("api/endpoints/user_endpoints")
 nonebot.load_plugins("api/endpoints/store_endpoints")
 nonebot.load_plugins("api/endpoints/card_endpoints")
+nonebot.load_plugins("api/endpoints/restaurant_endpoints")
 
 
 @driver.on_startup

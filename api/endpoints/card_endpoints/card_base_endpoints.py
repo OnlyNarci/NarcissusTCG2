@@ -1,4 +1,6 @@
 from typing import Optional
+from nonebot import require
+require("nonebot_plugin_alconna")
 from nonebot.typing import T_State
 from nonebot_plugin_alconna import on_alconna, Arparma
 from nonebot.adapters.onebot.v11 import MessageSegment

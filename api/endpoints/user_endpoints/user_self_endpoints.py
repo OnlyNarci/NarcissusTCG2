@@ -81,6 +81,7 @@ async def check_in_endpoint(
     :param state: 请求状态，用于获取玩家id
     """
     user_id = state.get('user_id')
+    at_msg = MessageSegment.at(user_id=state.get('user_uid'))
     response = await check_in_service(user_id=user_id)
     if response['success']:
         msg = f'签到成功，获得{response['data']['add_byte']}比特。'
@@ -88,9 +89,9 @@ async def check_in_endpoint(
             msg += f'连续签到: {response['data']['continuous_check_in']}天，额外获得{response['data']['extra_byte']}比特'
         else:
             msg += '连续签到获取更多比特。'
-        await check_in_cmd.finish(msg)
+        await check_in_cmd.finish(msg + at_msg)
     else:
-        await check_in_cmd.finish('您今天已经签到过了。')
+        await check_in_cmd.finish('您今天已经签到过了。' + at_msg)
         
 
 upgrade_cmd = on_command('升级', priority=1, block=True)
@@ -106,13 +107,14 @@ async def upgrade_endpoint(
     :param state: 请求状态，用于获取玩家id
     """
     user_id = state.get('user_id')
+    at_msg = MessageSegment.at(user_id=state.get('user_uid'))
     try:
         unlock_cards = await user_upgrade_service(
             user_id=user_id,
         )
         info_logger.info(f'success in upgrade. params: user_id={user_id}')
-        await upgrade_cmd.finish(f'升级成功，解锁卡牌 {'、'.join(unlock_cards)}。')
+        await upgrade_cmd.finish(f'升级成功，解锁卡牌 {'、'.join(unlock_cards)}。' + at_msg)
     except UnAtomicError as e:
         info_logger.info(f'failed to upgrade. params: user_id={user_id}')
-        await upgrade_cmd.finish(f'经验值不足，距离下次升级还需要 {e.data.get('require_exp')}。')
+        await upgrade_cmd.finish(f'经验值不足，距离下次升级还需要 {e.data.get('require_exp')}。' + at_msg)
     

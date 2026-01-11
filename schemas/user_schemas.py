@@ -1,5 +1,4 @@
-from typing import Dict
-from datetime import datetime
+from datetime import date
 from pydantic import Field
 from schemas import BaseParams
 from schemas.card_schemas import UserCardParams
@@ -16,12 +15,11 @@ class UserParams(BaseParams):
     exp: int = Field(ge=0, default=0, title='玩家当前经验点数')
     require_exp: int = Field(ge=1000, default=1000, title='升到下一级所需经验点数')
     main_business: RestaurantBusiness = Field(title='主营业务')
+    
 
-
-class OrderParams(BaseParams):
-    """订单参数模型"""
-    order_id: int = Field(ge=1, title='订单编号')
-    require_cards: Dict[str, int] = Field(title='订单内容', description='键为卡牌名，值为卡牌数量')
-    byte: int = Field(ge=0, title='订单价格', description='完成订单可以获得的比特')
-    exp: int = Field(ge=0, title='经验值', description='完成订单获得')
-    expire_at: datetime = Field(title='订单过期时间')
+class RestaurantParams(BaseParams):
+    """餐馆信息模型"""
+    level: int = Field(default=1, ge=1, title='等级')
+    main_business: RestaurantBusiness = Field(title='主营业务')
+    last_change_business: date = Field(title='上一次修改主营业务的日期')
+    created_at: date = Field(title='开业日期')
